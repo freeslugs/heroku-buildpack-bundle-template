@@ -1,4 +1,4 @@
-heroku-buildpack-bundler-http-auth-config
+heroku-buildpack-bundle-template
 =========================================
 
-A heroku buildpack to write an environment variable configured repo + auth to your .bundler/config file.
+A heroku buildpack to write a .bundle based on a bundle_template in your app directory. Any environment variables in the templates like ${VAR_NAME} are expanded to their values.

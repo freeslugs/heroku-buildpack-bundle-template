@@ -1,0 +1,28 @@
+#!/bin/bash
+
+build_dir=$1
+env_dir=$3
+
+set -e
+
+bundle_dir=$build_dir/.bundle
+echo "-----> Writing config values to .bundle"
+rm -rf $bundle_dir
+mkdir $bundle_dir
+ 
+cd $build_dir/bundle_template
+find . -type f -print0 | while IFS= read -r -d $'\0' template_file; do
+  while read line ; do
+    # Do simple environment variable substitution on the line.
+    while [[ "$line" =~ (\$\{[a-zA-Z_][a-zA-Z_0-9]*\}) ]] ; do
+      EXPRESSION=${BASH_REMATCH[1]}
+      VAR_NAME=${EXPRESSION:2:${#EXPRESSION}-3}
+      RESULT=$(cat $env_dir/$VAR_NAME)
+      line=${line//$EXPRESSION/$RESULT}
+    done
+    echo $line >> $bundle_dir/$template_file
+  done < "$template_file"
+done
+
+echo "        Success"
+exit 0

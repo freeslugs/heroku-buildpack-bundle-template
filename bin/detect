@@ -1,0 +1,10 @@
+#!/bin/bash
+
+build_dir=$1
+
+if [[ -d $build_dir/bundle_template ]]; then
+   echo "Bundle template found, writing .bundle"
+   exit 0
+else
+  exit 1
+fi
