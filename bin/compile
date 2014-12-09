@@ -22,7 +22,7 @@ find . -type f -print0 | while IFS= read -r -d $'\0' template_file; do
     done
     echo $line >> $bundle_dir/$template_file
   done < "$template_file"
-  echo 'Wrote $bundle_dir/$template_file'
+  echo "Wrote $bundle_dir/$template_file"
 done
 
 echo "        Success"
