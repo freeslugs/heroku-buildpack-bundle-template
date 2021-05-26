@@ -6,29 +6,29 @@ env_dir=$3
 
 set -e
 
-sudo apt-get update
-sudo apt-get install mariadb-server mariadb-client
-sudo apt-get install apache2
+apt-get update
+apt-get install mariadb-server mariadb-client
+apt-get install apache2
 
-sudo add-apt-repository ppa:ondrej/php
-sudo apt-get update
-sudo apt-get install php5.6 php5.6-soap php5.6-ldap
-sudo apt-get install php5.6-mysql php5.6-gd php5.6-xml
-sudo apt-get install php5.6-curl php5.6-mbstring php5.6-zip
-sudo service apache2 restart
+add-apt-repository ppa:ondrej/php
+apt-get update
+apt-get install php5.6 php5.6-soap php5.6-ldap
+apt-get install php5.6-mysql php5.6-gd php5.6-xml
+apt-get install php5.6-curl php5.6-mbstring php5.6-zip
+service apache2 restart
 
 
 cd /var/www/html
-sudo wget https://github.com/opencats/OpenCATS/releases/download/0.9.4/opencats-0.9.4-full.zip
-sudo unzip opencats-0.9.4-full.zip
-sudo mv /var/www/html/home/travis/build/opencats/OpenCATS opencats
-sudo rm -Rf /var/www/html/home /var/www/html/opencats/INSTALL_BLOCK
+wget https://github.com/opencats/OpenCATS/releases/download/0.9.4/opencats-0.9.4-full.zip
+unzip opencats-0.9.4-full.zip
+mv /var/www/html/home/travis/build/opencats/OpenCATS opencats
+rm -Rf /var/www/html/home /var/www/html/opencats/INSTALL_BLOCK
 
-sudo chown www-data:www-data opencats
-sudo chown -R www-data:www-data opencats
-sudo chmod 770 opencats/attachments
-sudo chmod 770 opencats/upload
-sudo apt-get install antiword poppler-utils html2text unrtf
+chown www-data:www-data opencats
+chown -R www-data:www-data opencats
+chmod 770 opencats/attachments
+chmod 770 opencats/upload
+apt-get install antiword poppler-utils html2text unrtf
 
 
 
